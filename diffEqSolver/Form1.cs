@@ -327,13 +327,15 @@ namespace diffEqSolver
         {
             for(int i = 1; i<numOfPoints; i++)
             {
+                /*
                 points.Add(new Point(x:0, y: 0, vx: 0, vy: 0));
                 aPoint sysOut = calcSysOut(points[i - 1]);
                 points[i] = integra(points[i - 1], sysOut, dT);
                 points[i] = integra(points[i], points[i], dT);
                 time.Add(time[i - 1] + dT);
+                */
 
-                /*
+                aPoint sysOut = calcSysOut(points[i - 1]);
                 Point _tmp = new Point(
                     vx: points[i - 1].vX + sysOut.aX * dT,
                     vy: points[i - 1].vY + sysOut.aY * dT,
@@ -342,7 +344,7 @@ namespace diffEqSolver
                     );
                 points.Add(_tmp);
                 time.Add(time[i - 1] + dT);
-                */
+                
                 /*
                 Point res = points[i - 1] + calcSysOut(points[i - 1] * dT);
                 Point _tmp = new Point(
