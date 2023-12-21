@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace diffEqSolver
 {
@@ -11,108 +12,102 @@ namespace diffEqSolver
             {1, "Hyun" },
             {2, "RK4" },
         };
-        
 
+        
+        
         struct Point
         {
+            public Point()
+            {
+                state[0] = new Vector2d(0, 0);
+                state[1] = new Vector2d(0, 0);
+                state[2] = new Vector2d(0, 0);
+            }
             public Point(Point point)
             {
-                X= point.X;
-                Y= point.Y; 
-                vX= point.vX;
-                vY= point.vY;
-            }
-            public Point(double x, double y, double vx, double vy)
-            {
-                X = x;
-                Y = y;
-                vX = vx;
-                vY = vy;
+                state = point.state;
             }
 
-            public double X { get; set; }
-            public double Y { get; set; }
-            public double vX { get; set; }
-            public double vY { get; set; }
+            public Point(Vector2d accels, Vector2d vels, Vector2d coords)
+            {
+                Accels = accels;
+                Vels= vels;
+                Coords = coords;
+            }
+
+            public Point(double x = 0, double y = 0, double vx = 0, double vy = 0, double ax = 0, double ay = 0)
+            {
+                state[0] = new Vector2d(ax, ay);
+                state[1] = new Vector2d(vx, vy);
+                state[2] = new Vector2d(x, y);                
+            }
+
+            /*
+            Vector2d[] state = {new Vector2d(0,0),
+                                new Vector2d(0,0),
+                                new Vector2d(0,0)};
+            */
+            Vector2d[] state = new Vector2d[3];
+
+            public Vector2d[] State
+            {
+                get => state;
+                set => state = value;
+            }
+
+            public Vector2d Accels
+            {
+                get => state[0]; set => state[0] = value;
+            }
+
+            public Vector2d Vels
+            {
+                get => state[1]; set => state[1] = value;
+            }
+
+            public Vector2d Coords
+            {
+                get => state[2]; set => state[2] = value;
+            }
+
+            public double X { get => Coords.X; }
+            public double Y { get => Coords.Y; }
+            public double vX { get => Vels.X; }
+            public double vY { get => Vels.Y; } 
+            public double aX { get => Accels.X; }
+            public double aY { get => Accels.Y; }   
+
             public static Point operator +(Point a, Point b)
             {
-                return new Point(a.X + b.X,
-                                a.Y + b.Y,
-                                a.vX + b.vX,
-                                a.vY + b.vY);
+                
+                return new Point(accels: a.Accels + b.Accels,
+                                 vels: a.Vels + b.Vels,
+                                 coords: a.Coords + b.Coords);
             }
 
             public static Point operator -(Point a, Point b)
             {
-                return new Point(a.X - b.X,
-                                a.Y - b.Y,
-                                a.vX - b.vX,
-                                a.vY - b.vY);
+                return new Point(accels: a.Accels - b.Accels,
+                                 vels: a.Vels - b.Vels,
+                                 coords: a.Coords - b.Coords);
             }
 
             public static Point operator *(Point a, double c){
-                return new Point(a.X *c,
-                                a.Y * c,
-                                a.vX * c,
-                                a.vY * c);
+                return new Point(accels: a.Accels * c,
+                                 vels: a.Vels * c,
+                                 coords: a.Coords * c);
             }
 
             public static Point operator /(Point a, double c)
             {
-                return new Point(a.X / c,
-                                a.Y / c,
-                                a.vX / c,
-                                a.vY / c);
+                return new Point(accels: a.Accels / c,
+                                 vels: a.Vels / c,
+                                 coords: a.Coords / c);
             }
 
-        }
+        }        
 
-        struct aPoint
-        {
-            public aPoint(double ax, double ay)
-            {
-                aX = ax;   
-                aY = ay;    
-            }
-            public double aX { get; set; }
-            public double aY { get; set; }
-
-            public static aPoint operator +(aPoint a, aPoint b)
-            {
-                return new aPoint(a.aX + b.aX,
-                                a.aY + b.aY);
-            }
-
-            public static Point operator +(Point a, aPoint b)
-            {
-                return new Point(
-                    vx: a.vX + b.aX,
-                    vy: a.vY + b.aY,
-                    x: a.X,
-                    y: a.Y
-                );
-            }
-
-            public static aPoint operator -(aPoint a, aPoint b)
-            {
-                return new aPoint(a.aX - b.aX,
-                                a.aY - b.aY);
-            }
-
-            public static aPoint operator *(aPoint a, double c)
-            {
-                return new aPoint(a.aX * c,
-                                a.aY * c);
-            }
-
-            public static aPoint operator /(aPoint a, double c)
-            {
-                return new aPoint(a.aX / c,
-                                a.aY / c);
-            }
-        }
-
-        Point initialCond = new Point(2, 0, 0, 0);
+        Point initialCond = new Point(x:2, y:0);
 
         List<Point> points = new List<Point>();
         List<double> time = new List<double>();
@@ -121,9 +116,9 @@ namespace diffEqSolver
 
         int animationI = 0;
 
-        aPoint calcSysOut(Point point)
+        Point calcSysOut(Point point)
         {
-            return new aPoint(
+            return new Point(
                 ax: 2 * point.X * (-2 * Math.Pow(point.vX, 2) - accle_g) / (4 * Math.Pow(point.X, 2) + 1),
                 ay: (2 * Math.Pow(point.vX, 2) + accle_g) / (4 * Math.Pow(point.X, 2) + 1) - accle_g
                 );
@@ -218,15 +213,6 @@ namespace diffEqSolver
         {
             if (points.Count > 0)
             {
-                if (xPoseCheck.Checked)
-                {
-                    xPlot.Plot.AddScatter(time.ToArray(), poseXGraph.ToArray(), markerSize:0);
-                }
-                else
-                {
-                    xPlot.Plot.Clear();
-                }
-
                 animationX[0] = points[animationI].X ;
                 animationY[0] = points[animationI].Y ;
                 animationT[0] = time[animationI];
@@ -282,8 +268,10 @@ namespace diffEqSolver
                     calcEiler();
                     break;
                 case "Hyun":
+                    calcHyun();
                     break;
                 case "RK4":
+                    calcRK4();
                     break;
                 default:
                     break;
@@ -301,6 +289,12 @@ namespace diffEqSolver
 
         }
 
+        Vector2d integra (Vector2d prevState, Vector2d curState, double dT) {
+            return new Vector2d(prevState + curState * dT);
+        }
+
+
+        /*
         private Point integra(Point prevState, Point curState, double dT)
         {
             Point _tmp = new Point(
@@ -322,38 +316,17 @@ namespace diffEqSolver
             return new Point(prevState + _tmp);
 
         }  
+        */
 
         private void calcEiler()
         {
             for(int i = 1; i<numOfPoints; i++)
             {
-                /*
-                points.Add(new Point(x:0, y: 0, vx: 0, vy: 0));
-                aPoint sysOut = calcSysOut(points[i - 1]);
-                points[i] = integra(points[i - 1], sysOut, dT);
-                points[i] = integra(points[i], points[i], dT);
+                Point _tmp = calcSysOut(points[i - 1]);
+                _tmp.Vels = points[i - 1].Vels + _tmp.Accels * dT;
+                _tmp.Coords = points[i - 1].Coords + _tmp.Vels * dT;
+                points.Add( _tmp );
                 time.Add(time[i - 1] + dT);
-                */
-
-                aPoint sysOut = calcSysOut(points[i - 1]);
-                Point _tmp = new Point(
-                    vx: points[i - 1].vX + sysOut.aX * dT,
-                    vy: points[i - 1].vY + sysOut.aY * dT,
-                    x: points[i-1].X + (points[i - 1].vX + sysOut.aX * dT)*dT,
-                    y: points[i - 1].Y + (points[i - 1].vY + sysOut.aY * dT) * dT
-                    );
-                points.Add(_tmp);
-                time.Add(time[i - 1] + dT);
-                
-                /*
-                Point res = points[i - 1] + calcSysOut(points[i - 1] * dT);
-                Point _tmp = new Point(
-                    vx: 0,
-                    vy: 0,
-                    x: 0,
-                    y: 0
-                    );
-                */
             }
         }
 
@@ -361,8 +334,56 @@ namespace diffEqSolver
         {
             for(int i = 1; i < numOfPoints;i++)
             {
-                points.Add(new Point(0,0,0,0));
+                Point prev = points[i - 1];
 
+                Point k1 = points[i-1];
+                k1.Accels = calcSysOut(prev).Accels;
+
+                Point k2 = new Point();
+                k2.Vels = prev.Vels + k1.Accels * dT;
+                k2.Coords = prev.Coords + k1.Vels * dT;
+                k2.Accels = calcSysOut(k2).Accels;
+
+                Point res = new Point();
+                res.Vels = prev.Vels + (k1.Accels + k2.Accels) * dT * 0.5;
+                res.Coords = prev.Coords + (k1.Vels + k2.Vels) * dT * 0.5;
+
+                points.Add(res);
+
+                time.Add(time[i - 1] + dT);
+            }
+        }
+
+        private void calcRK4()
+        {
+            for (int i = 1; i < numOfPoints; i++)
+            {
+                Point prevState = points[i - 1];
+
+                Point k1 = points[i - 1];
+                k1.Accels = calcSysOut(k1).Accels;
+
+                Point k2 = new Point();
+                k2.Vels = k1.Vels + k1.Accels * 0.5 * dT;
+                k2.Coords = k1.Coords + k1.Vels * 0.5 * dT;
+                k2.Accels = calcSysOut(k2).Accels;
+
+                Point k3 = new Point();
+                k3.Vels = k2.Vels + k2.Accels * 0.5 * dT;
+                k3.Coords = k2.Coords + k2.Vels * 0.5 * dT;
+                k3.Accels = calcSysOut(k3).Accels;
+
+                Point k4 = new Point();
+                k4.Vels = k3.Vels + k3.Accels * dT;
+                k4.Coords = k3.Coords + k3.Vels  * dT;
+                k4.Accels = calcSysOut(k4).Accels;
+
+                Point res = new Point();
+                res.Vels = prevState.Vels + (k1.Accels + 2 * k2.Accels + 2 * k3.Accels + k4.Accels) * dT / 6;
+                res.Coords = prevState.Coords + (k1.Vels + 2 * k2.Vels + 2 * k3.Vels + k4.Vels) * dT / 6;
+
+                points.Add(res);
+                time.Add(time[i - 1] + dT);
             }
         }
 
@@ -372,5 +393,31 @@ namespace diffEqSolver
         {
             timeBar.Plot.SetAxisLimitsX(xMin: 0, xMax: (double)simEndTime.Value);
         }
+
+        private void xPoseCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                xPlot.Plot.AddScatter(time.ToArray(), poseXGraph.ToArray(), markerSize: 0);
+            }
+            else
+            {
+                xPlot.Plot.Clear();
+            }
+        }
+
+        private void yPoseCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                yPlot.Plot.AddScatter(time.ToArray(), poseYGraph.ToArray(), markerSize: 0);
+            }
+            else
+            {
+                yPlot.Plot.Clear();
+            }
+        }
+
+
     }
 }

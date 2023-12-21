@@ -166,6 +166,7 @@
             this.yPoseCheck.TabIndex = 1;
             this.yPoseCheck.Text = "Y Pose";
             this.yPoseCheck.UseVisualStyleBackColor = true;
+            this.yPoseCheck.CheckedChanged += new System.EventHandler(this.yPoseCheck_CheckedChanged);
             // 
             // yPlotAllCheck
             // 
@@ -250,6 +251,7 @@
             this.xPoseCheck.TabIndex = 1;
             this.xPoseCheck.Text = "X Pose";
             this.xPoseCheck.UseVisualStyleBackColor = true;
+            this.xPoseCheck.CheckedChanged += new System.EventHandler(this.xPoseCheck_CheckedChanged);
             // 
             // xPlotAllCheck
             // 
