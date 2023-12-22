@@ -1,4 +1,4 @@
-﻿namespace diffEqSolver
+namespace diffEqSolver
 {
     partial class Form1
     {
@@ -122,6 +122,7 @@
             this.yPoseConfCheck.TabIndex = 5;
             this.yPoseConfCheck.Text = "Y Pose ConfInt";
             this.yPoseConfCheck.UseVisualStyleBackColor = true;
+            this.yPoseConfCheck.CheckedChanged += new System.EventHandler(this.graphCheck_CehackedChanged);
             // 
             // yPoseMeanCheck
             // 
@@ -133,6 +134,7 @@
             this.yPoseMeanCheck.TabIndex = 4;
             this.yPoseMeanCheck.Text = "Y Pose Mean";
             this.yPoseMeanCheck.UseVisualStyleBackColor = true;
+            this.yPoseMeanCheck.CheckedChanged += new System.EventHandler(this.graphCheck_CehackedChanged);
             // 
             // yPoseNoisyCheck
             // 
@@ -144,6 +146,7 @@
             this.yPoseNoisyCheck.TabIndex = 3;
             this.yPoseNoisyCheck.Text = "Y Pose Noisy";
             this.yPoseNoisyCheck.UseVisualStyleBackColor = true;
+            this.yPoseNoisyCheck.CheckedChanged += new System.EventHandler(this.graphCheck_CehackedChanged);
             // 
             // yVelCheck
             // 
@@ -155,10 +158,13 @@
             this.yVelCheck.TabIndex = 2;
             this.yVelCheck.Text = "Y Velocity";
             this.yVelCheck.UseVisualStyleBackColor = true;
+            this.yVelCheck.CheckedChanged += new System.EventHandler(this.graphCheck_CehackedChanged);
             // 
             // yPoseCheck
             // 
             this.yPoseCheck.AutoSize = true;
+            this.yPoseCheck.Checked = true;
+            this.yPoseCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.yPoseCheck.Location = new System.Drawing.Point(13, 100);
             this.yPoseCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.yPoseCheck.Name = "yPoseCheck";
@@ -166,7 +172,7 @@
             this.yPoseCheck.TabIndex = 1;
             this.yPoseCheck.Text = "Y Pose";
             this.yPoseCheck.UseVisualStyleBackColor = true;
-            this.yPoseCheck.CheckedChanged += new System.EventHandler(this.yPoseCheck_CheckedChanged);
+            this.yPoseCheck.CheckedChanged += new System.EventHandler(this.graphCheck_CehackedChanged);
             // 
             // yPlotAllCheck
             // 
@@ -207,6 +213,7 @@
             this.xPoseConfCheck.TabIndex = 5;
             this.xPoseConfCheck.Text = "X Pose ConfInt";
             this.xPoseConfCheck.UseVisualStyleBackColor = true;
+            this.xPoseConfCheck.CheckedChanged += new System.EventHandler(this.graphCheck_CehackedChanged);
             // 
             // xPoseMeanCheck
             // 
@@ -218,6 +225,7 @@
             this.xPoseMeanCheck.TabIndex = 4;
             this.xPoseMeanCheck.Text = "X Pose Mean";
             this.xPoseMeanCheck.UseVisualStyleBackColor = true;
+            this.xPoseMeanCheck.CheckedChanged += new System.EventHandler(this.graphCheck_CehackedChanged);
             // 
             // xPoseNoisyCheck
             // 
@@ -229,6 +237,7 @@
             this.xPoseNoisyCheck.TabIndex = 3;
             this.xPoseNoisyCheck.Text = "X Pose Noisy";
             this.xPoseNoisyCheck.UseVisualStyleBackColor = true;
+            this.xPoseNoisyCheck.CheckedChanged += new System.EventHandler(this.graphCheck_CehackedChanged);
             // 
             // xVelCheck
             // 
@@ -240,10 +249,13 @@
             this.xVelCheck.TabIndex = 2;
             this.xVelCheck.Text = "X Velocity";
             this.xVelCheck.UseVisualStyleBackColor = true;
+            this.xVelCheck.CheckedChanged += new System.EventHandler(this.graphCheck_CehackedChanged);
             // 
             // xPoseCheck
             // 
             this.xPoseCheck.AutoSize = true;
+            this.xPoseCheck.Checked = true;
+            this.xPoseCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.xPoseCheck.Location = new System.Drawing.Point(13, 100);
             this.xPoseCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.xPoseCheck.Name = "xPoseCheck";
@@ -251,7 +263,7 @@
             this.xPoseCheck.TabIndex = 1;
             this.xPoseCheck.Text = "X Pose";
             this.xPoseCheck.UseVisualStyleBackColor = true;
-            this.xPoseCheck.CheckedChanged += new System.EventHandler(this.xPoseCheck_CheckedChanged);
+            this.xPoseCheck.CheckedChanged += new System.EventHandler(this.graphCheck_CehackedChanged);
             // 
             // xPlotAllCheck
             // 

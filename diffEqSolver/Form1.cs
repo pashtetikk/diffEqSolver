@@ -115,6 +115,7 @@ namespace diffEqSolver
         double dT = 0.01;
 
         int animationI = 0;
+        bool newData = false;
 
         Point calcSysOut(Point point)
         {
@@ -164,11 +165,19 @@ namespace diffEqSolver
             animTimeBar.BarWidth = 0.5;
             animTimeBar.Orientation = ScottPlot.Orientation.Horizontal;
 
+
             foreach (var method in IntegraMethods)
             {
                 integraMethod.Items.Add(method.Value);
             }
             integraMethod.Text = IntegraMethods[2];
+
+            // TODO: ��� �������/������ ����� ������� ������� ������������ ���� dnwData
+            // ��� ����������� ����� newData ���� �������� ��������� � ���������� ��������� ���������
+            
+            // TODO: ����������� ������� ��������� �� ��������� 
+
+            
 
 
             //double[] dataX = new double[] { 1, 2, 3, 4, 5 };
@@ -225,14 +234,45 @@ namespace diffEqSolver
                 }                
             }
 
+            if (newData)
+            {
+                newData = false;
+                xPlot.Plot.Clear();
+                yPlot.Plot.Clear();
+                redrawGraph();
+
+            }
+
 
             //testX[0] = testX[0] + (rand.NextDouble() - 0.5)*0.1;
-           // testY[0] = testY[0] + (rand.NextDouble() - 0.5) * 0.1;
+            //testY[0] = testY[0] + (rand.NextDouble() - 0.5) * 0.1;
             //xyPlot.Plot.AddScatter(testX, testY, markerSize: 10, color: Color.Magenta);
             xPlot.Refresh();
             yPlot.Refresh();
             xyPlot.Refresh();
             timeBar.Refresh();
+        }
+        private void redrawGraph()
+        {
+            if (xPoseCheck.Checked)
+            {
+                xPlot.Plot.AddScatter(time.ToArray(), poseXGraph.ToArray(), markerSize: 0, color: Color.Blue);
+            }
+
+            if (xVelCheck.Checked)
+            {
+                xPlot.Plot.AddScatter(time.ToArray(), velXGraph.ToArray(), markerSize: 0, color: Color.Green);
+            }
+
+            if (yPoseCheck.Checked)
+            {
+                yPlot.Plot.AddScatter(time.ToArray(), poseYGraph.ToArray(), markerSize: 0, color: Color.Blue);
+            }
+
+            if (yVelCheck.Checked)
+            {
+                yPlot.Plot.AddScatter(time.ToArray(), velYGraph.ToArray(), markerSize: 0, color: Color.Green);
+            }
         }
 
         private void confRange99_CheckedChanged(object sender, EventArgs e)
@@ -285,6 +325,9 @@ namespace diffEqSolver
                 velYGraph.Add(point.vY);
             }
             plotUpdateTim.Interval = (int)(dT * 2000);
+            xPlot.Plot.Clear();
+            yPlot.Plot.Clear();
+            newData = true;
             plotUpdateTim.Enabled = true;
 
         }
@@ -359,36 +402,14 @@ namespace diffEqSolver
         }
 
 
-
+        private void graphCheck_CehackedChanged(object sender, EventArgs e)
+        {
+            newData = true;
+        }
         private void simEndTime_ValueChanged(object sender, EventArgs e)
         {
             timeBar.Plot.SetAxisLimitsX(xMin: 0, xMax: (double)simEndTime.Value);
         }
-
-        private void xPoseCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            if (((CheckBox)sender).Checked)
-            {
-                xPlot.Plot.AddScatter(time.ToArray(), poseXGraph.ToArray(), markerSize: 0);
-            }
-            else
-            {
-                xPlot.Plot.Clear();
-            }
-        }
-
-        private void yPoseCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            if (((CheckBox)sender).Checked)
-            {
-                yPlot.Plot.AddScatter(time.ToArray(), poseYGraph.ToArray(), markerSize: 0);
-            }
-            else
-            {
-                yPlot.Plot.Clear();
-            }
-        }
-
 
     }
 }
