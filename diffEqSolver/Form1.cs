@@ -112,7 +112,7 @@ namespace diffEqSolver
         List<Point> points = new List<Point>();
         List<double> time = new List<double>();
         int numOfPoints = 0;
-        double dT = 0;
+        double dT = 0.01;
 
         int animationI = 0;
 
@@ -168,7 +168,7 @@ namespace diffEqSolver
             {
                 integraMethod.Items.Add(method.Value);
             }
-            integraMethod.Text = IntegraMethods[0];
+            integraMethod.Text = IntegraMethods[2];
 
 
             //double[] dataX = new double[] { 1, 2, 3, 4, 5 };
@@ -176,7 +176,7 @@ namespace diffEqSolver
 
             //xPlot.Plot.AddScatter(dataX, dataY);
             //yPlot.Plot.AddScatter(dataX, dataY);
-            plotUpdateTim.Enabled = true;   
+            //plotUpdateTim.Enabled = true;   
         }
 
         private void xPlotAllCheck_CheckedChanged(object sender, EventArgs e)
@@ -289,35 +289,6 @@ namespace diffEqSolver
 
         }
 
-        Vector2d integra (Vector2d prevState, Vector2d curState, double dT) {
-            return new Vector2d(prevState + curState * dT);
-        }
-
-
-        /*
-        private Point integra(Point prevState, Point curState, double dT)
-        {
-            Point _tmp = new Point(
-                x: curState.vX * dT,
-                y: curState.vY * dT,
-                vx: 0,
-                vy: 0); 
-            return new Point(prevState + _tmp);
-        }
-
-        private Point integra(Point prevState, aPoint curState, double dT)
-        {
-            Point _tmp= new Point(
-                vx: curState.aX * dT,
-                vy: curState.aY * dT,
-                x:0,
-                y:0
-                );
-            return new Point(prevState + _tmp);
-
-        }  
-        */
-
         private void calcEiler()
         {
             for(int i = 1; i<numOfPoints; i++)
@@ -358,29 +329,29 @@ namespace diffEqSolver
         {
             for (int i = 1; i < numOfPoints; i++)
             {
-                Point prevState = points[i - 1];
+                Point prev = points[i - 1];
 
-                Point k1 = points[i - 1];
+                Point k1 = prev;
                 k1.Accels = calcSysOut(k1).Accels;
 
                 Point k2 = new Point();
-                k2.Vels = k1.Vels + k1.Accels * 0.5 * dT;
-                k2.Coords = k1.Coords + k1.Vels * 0.5 * dT;
+                k2.Vels = prev.Vels + k1.Accels * 0.5 * dT;
+                k2.Coords = prev.Coords + k1.Vels * 0.5 * dT;
                 k2.Accels = calcSysOut(k2).Accels;
 
                 Point k3 = new Point();
-                k3.Vels = k2.Vels + k2.Accels * 0.5 * dT;
-                k3.Coords = k2.Coords + k2.Vels * 0.5 * dT;
+                k3.Vels = prev.Vels + k2.Accels * 0.5 * dT;
+                k3.Coords = prev.Coords + k2.Vels * 0.5 * dT;
                 k3.Accels = calcSysOut(k3).Accels;
 
                 Point k4 = new Point();
-                k4.Vels = k3.Vels + k3.Accels * dT;
-                k4.Coords = k3.Coords + k3.Vels  * dT;
+                k4.Vels = prev.Vels + k3.Accels * dT;
+                k4.Coords = prev.Coords + k3.Vels  * dT;
                 k4.Accels = calcSysOut(k4).Accels;
 
                 Point res = new Point();
-                res.Vels = prevState.Vels + (k1.Accels + 2 * k2.Accels + 2 * k3.Accels + k4.Accels) * dT / 6;
-                res.Coords = prevState.Coords + (k1.Vels + 2 * k2.Vels + 2 * k3.Vels + k4.Vels) * dT / 6;
+                res.Vels = prev.Vels + (k1.Accels + 2 * k2.Accels + 2 * k3.Accels + k4.Accels) * dT / 6;
+                res.Coords = prev.Coords + (k1.Vels + 2 * k2.Vels + 2 * k3.Vels + k4.Vels) * dT / 6;
 
                 points.Add(res);
                 time.Add(time[i - 1] + dT);
