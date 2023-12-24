@@ -209,7 +209,7 @@ namespace diffEqSolver
             {
                 var errXGraph = xPlot.Plot.AddErrorBars(thinOut(time).ToArray(), thinOut(meanXPose).ToArray(), null, 
                                                             thinOut(confXPose).ToArray(), markerSize: 0, color: Color.Green);
-                errXGraph.LineWidth = 0.01;
+                errXGraph.LineWidth = 1.5;
             }
 
 
@@ -241,7 +241,7 @@ namespace diffEqSolver
             {
                 var errYGraph = yPlot.Plot.AddErrorBars(thinOut(time).ToArray(), thinOut(meanYPose).ToArray(), null,
                                                             thinOut(confYPose).ToArray(), markerSize: 0, color: Color.Green);
-                errYGraph.LineWidth = 0.01;
+                errYGraph.LineWidth = 1.5;
             }
 
 
@@ -359,8 +359,8 @@ namespace diffEqSolver
                     squareYErr += Math.Pow(noisyYPose[j][i] - meanYPose[i], 2);
                 }
 
-                confXPose.Add(Math.Sqrt(squareXErr) * studentCoef/Math.Sqrt(NUM_OF_EXPR));
-                confYPose.Add(Math.Sqrt(squareYErr) * studentCoef / Math.Sqrt(NUM_OF_EXPR));                
+                confXPose.Add(Math.Sqrt(squareXErr/NUM_OF_EXPR) * studentCoef/Math.Sqrt(NUM_OF_EXPR));
+                confYPose.Add(Math.Sqrt(squareYErr/NUM_OF_EXPR) * studentCoef / Math.Sqrt(NUM_OF_EXPR));                
             }
 
 
