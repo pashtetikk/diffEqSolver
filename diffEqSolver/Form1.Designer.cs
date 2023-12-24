@@ -327,10 +327,10 @@ namespace diffEqSolver
             // 
             this.simTimeStep.DecimalPlaces = 4;
             this.simTimeStep.Increment = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
-            262144});
+            196608});
             this.simTimeStep.Location = new System.Drawing.Point(413, 53);
             this.simTimeStep.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.simTimeStep.Maximum = new decimal(new int[] {
@@ -514,7 +514,7 @@ namespace diffEqSolver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2216, 1407);
+            this.ClientSize = new System.Drawing.Size(2216, 1261);
             this.Controls.Add(this.simulateBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Settings);

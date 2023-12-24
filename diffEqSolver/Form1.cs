@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Numerics;
 
 namespace diffEqSolver
@@ -6,6 +7,9 @@ namespace diffEqSolver
     public partial class Form1 : Form
     {
         const double accle_g = 9.81;
+        int NUM_OF_EXPR = 25;
+        int THIN_OUT_COEF = 8;
+        double studentCoef = 5.598;
         Dictionary<int, string> IntegraMethods = new Dictionary<int, string>
         {
             {0, "Eiler" },
@@ -13,109 +17,47 @@ namespace diffEqSolver
             {2, "RK4" },
         };
 
+        Random rnd = new Random();
         
-        
-        struct Point
+        double getRndNum()
         {
-            public Point()
+            double num = 0;
+            for (int i = 0; i < 6; i++)
             {
-                state[0] = new Vector2d(0, 0);
-                state[1] = new Vector2d(0, 0);
-                state[2] = new Vector2d(0, 0);
+                num += rnd.NextDouble()*2 - 1;
             }
-            public Point(Point point)
-            {
-                state = point.state;
-            }
-
-            public Point(Vector2d accels, Vector2d vels, Vector2d coords)
-            {
-                Accels = accels;
-                Vels= vels;
-                Coords = coords;
-            }
-
-            public Point(double x = 0, double y = 0, double vx = 0, double vy = 0, double ax = 0, double ay = 0)
-            {
-                state[0] = new Vector2d(ax, ay);
-                state[1] = new Vector2d(vx, vy);
-                state[2] = new Vector2d(x, y);                
-            }
-
-            /*
-            Vector2d[] state = {new Vector2d(0,0),
-                                new Vector2d(0,0),
-                                new Vector2d(0,0)};
-            */
-            Vector2d[] state = new Vector2d[3];
-
-            public Vector2d[] State
-            {
-                get => state;
-                set => state = value;
-            }
-
-            public Vector2d Accels
-            {
-                get => state[0]; set => state[0] = value;
-            }
-
-            public Vector2d Vels
-            {
-                get => state[1]; set => state[1] = value;
-            }
-
-            public Vector2d Coords
-            {
-                get => state[2]; set => state[2] = value;
-            }
-
-            public double X { get => Coords.X; }
-            public double Y { get => Coords.Y; }
-            public double vX { get => Vels.X; }
-            public double vY { get => Vels.Y; } 
-            public double aX { get => Accels.X; }
-            public double aY { get => Accels.Y; }   
-
-            public static Point operator +(Point a, Point b)
-            {
-                
-                return new Point(accels: a.Accels + b.Accels,
-                                 vels: a.Vels + b.Vels,
-                                 coords: a.Coords + b.Coords);
-            }
-
-            public static Point operator -(Point a, Point b)
-            {
-                return new Point(accels: a.Accels - b.Accels,
-                                 vels: a.Vels - b.Vels,
-                                 coords: a.Coords - b.Coords);
-            }
-
-            public static Point operator *(Point a, double c){
-                return new Point(accels: a.Accels * c,
-                                 vels: a.Vels * c,
-                                 coords: a.Coords * c);
-            }
-
-            public static Point operator /(Point a, double c)
-            {
-                return new Point(accels: a.Accels / c,
-                                 vels: a.Vels / c,
-                                 coords: a.Coords / c);
-            }
-
-        }        
+            return num * (double)noiseAmp.Value / 6;
+        }
 
         Point initialCond = new Point(x:2, y:0);
 
         List<Point> points = new List<Point>();
         List<double> time = new List<double>();
+
+        List<List<double>> noisyXPose = new List<List<double>>();
+        List<List<double>> noisyYPose = new List<List<double>>();
+
+        List<double> meanXPose = new List<double>();
+        List<double> meanYPose = new List<double>();
+
+        List<double> confXPose = new List<double>();
+        List<double> confYPose = new List<double>();
+
         int numOfPoints = 0;
         double dT = 0.01;
 
         int animationI = 0;
         bool newData = false;
+
+        List<double> thinOut(List<double> inData)
+        {
+            List<double> outData = new List<double>();
+            for(int i = 0; i<inData.Count; i+= THIN_OUT_COEF)
+            {
+                outData.Add(inData[i]);
+            }
+            return outData;
+        }
 
         Point calcSysOut(Point point)
         {
@@ -172,20 +114,6 @@ namespace diffEqSolver
             }
             integraMethod.Text = IntegraMethods[2];
 
-            // TODO: ��� �������/������ ����� ������� ������� ������������ ���� dnwData
-            // ��� ����������� ����� newData ���� �������� ��������� � ���������� ��������� ���������
-            
-            // TODO: ����������� ������� ��������� �� ��������� 
-
-            
-
-
-            //double[] dataX = new double[] { 1, 2, 3, 4, 5 };
-            //double[] dataY = new double[] { 1, 4, 9, 16, 25 };
-
-            //xPlot.Plot.AddScatter(dataX, dataY);
-            //yPlot.Plot.AddScatter(dataX, dataY);
-            //plotUpdateTim.Enabled = true;   
         }
 
         private void xPlotAllCheck_CheckedChanged(object sender, EventArgs e)
@@ -256,28 +184,73 @@ namespace diffEqSolver
         {
             if (xPoseCheck.Checked)
             {
-                xPlot.Plot.AddScatter(time.ToArray(), poseXGraph.ToArray(), markerSize: 0, color: Color.Blue);
+                xPlot.Plot.AddScatter(time.ToArray(), poseXGraph.ToArray(), markerSize: 0, color: Color.Blue, lineWidth:3);
             }
 
             if (xVelCheck.Checked)
             {
-                xPlot.Plot.AddScatter(time.ToArray(), velXGraph.ToArray(), markerSize: 0, color: Color.Green);
+                xPlot.Plot.AddScatter(time.ToArray(), velXGraph.ToArray(), markerSize: 0, color: Color.Green, lineWidth: 3);
             }
+
+            if (xPoseNoisyCheck.Checked)
+            {
+                for(int i = 0; i < NUM_OF_EXPR; i++)
+                {
+                    xPlot.Plot.AddScatter(time.ToArray(), noisyXPose[i].ToArray(), markerSize: 0, lineWidth:0.1f);
+                }
+            }
+
+            if(xPoseMeanCheck.Checked)
+            {
+                xPlot.Plot.AddScatter(time.ToArray(), meanXPose.ToArray(), markerSize: 0, lineWidth: 3, color: Color.Black);
+            }
+
+            if (xPoseConfCheck.Checked)
+            {
+                var errXGraph = xPlot.Plot.AddErrorBars(thinOut(time).ToArray(), thinOut(meanXPose).ToArray(), null, 
+                                                            thinOut(confXPose).ToArray(), markerSize: 0, color: Color.Green);
+                errXGraph.LineWidth = 0.01;
+            }
+
+
 
             if (yPoseCheck.Checked)
             {
-                yPlot.Plot.AddScatter(time.ToArray(), poseYGraph.ToArray(), markerSize: 0, color: Color.Blue);
+                yPlot.Plot.AddScatter(time.ToArray(), poseYGraph.ToArray(), markerSize: 0, color: Color.Blue, lineWidth: 3);
             }
 
             if (yVelCheck.Checked)
             {
-                yPlot.Plot.AddScatter(time.ToArray(), velYGraph.ToArray(), markerSize: 0, color: Color.Green);
+                yPlot.Plot.AddScatter(time.ToArray(), velYGraph.ToArray(), markerSize: 0, color: Color.Green, lineWidth: 3);
             }
+
+            if (yPoseNoisyCheck.Checked)
+            {
+                for (int i = 0; i < NUM_OF_EXPR; i++)
+                {
+                    yPlot.Plot.AddScatter(time.ToArray(), noisyYPose[i].ToArray(), markerSize: 0, lineWidth: 0.1f);
+                }
+            }
+
+            if (yPoseMeanCheck.Checked)
+            {
+                yPlot.Plot.AddScatter(time.ToArray(), meanYPose.ToArray(), markerSize: 0, lineWidth: 3, color: Color.Black);
+            }
+
+            if (yPoseConfCheck.Checked)
+            {
+                var errYGraph = yPlot.Plot.AddErrorBars(thinOut(time).ToArray(), thinOut(meanYPose).ToArray(), null,
+                                                            thinOut(confYPose).ToArray(), markerSize: 0, color: Color.Green);
+                errYGraph.LineWidth = 0.01;
+            }
+
+
         }
 
         private void confRange99_CheckedChanged(object sender, EventArgs e)
         {
             confRange95.Checked = !confRange99.Checked;
+
         }
 
         private void confRange95_CheckedChanged(object sender, EventArgs e)
@@ -292,14 +265,32 @@ namespace diffEqSolver
             animationI = 0;            
             dT = (double)simTimeStep.Value;
             numOfPoints = (int)((double)simEndTime.Value / (double)simTimeStep.Value);
+
             time.Clear();            
             points.Clear();
             poseXGraph.Clear();
             poseYGraph.Clear();
             velXGraph.Clear();
             velYGraph.Clear();
+            noisyXPose.Clear();
+            noisyYPose.Clear();
+            confXPose.Clear();
+            confYPose.Clear();
+            meanXPose.Clear();
+            meanYPose.Clear();
+
+
             time.Add(0);
             points.Add(initialCond);
+
+            if (confRange99.Checked)
+            {
+                studentCoef = 5.598;
+            }
+            else
+            {
+                studentCoef = 2.776;
+            }
 
 
             switch (integraMethod.SelectedItem.ToString())
@@ -316,6 +307,62 @@ namespace diffEqSolver
                 default:
                     break;
             }
+
+            for (int i = 0; i< NUM_OF_EXPR; i++)
+            {
+                List<double> _poseX = new List<double>();
+                List<double> _poseY = new List<double>();
+
+                List<double> noiseX = new List<double>();
+                List<double> noiseY = new List<double>();
+
+                noiseX.Add(getRndNum());
+                noiseY.Add(getRndNum());
+
+                _poseX.Add(points[0].X + noiseX[0]);
+                _poseY.Add(points[0].Y + noiseY[0]);
+
+                for(int j = 1; j<points.Count; j++)
+                {
+                    noiseX.Add(noiseX[j - 1] + getRndNum());
+                    noiseY.Add(noiseY[j - 1] + getRndNum());
+
+                    _poseX.Add(points[j].X + noiseX[j]);
+                    _poseY.Add(points[j].Y + noiseY[j]);
+                }
+                
+                noisyXPose.Add(_poseX);
+                noisyYPose.Add(_poseY);
+            }
+
+            for (int i = 0; i<points.Count; i++)
+            {
+                double meanX = 0;
+                double meanY = 0;
+                for (int j = 0; j < NUM_OF_EXPR; j++) 
+                {
+                    meanX += noisyXPose[j][i];
+                    meanY += noisyYPose[j][i];
+                }
+                meanXPose.Add(meanX / NUM_OF_EXPR);
+                meanYPose.Add(meanY / NUM_OF_EXPR);
+            }
+
+            for(int i = 0; i<points.Count; i++)
+            {
+                double squareXErr = 0;
+                double squareYErr = 0;
+
+                for(int j = 0; j<NUM_OF_EXPR; j++)
+                {
+                    squareXErr += Math.Pow(noisyXPose[j][i] - meanXPose[i], 2);
+                    squareYErr += Math.Pow(noisyYPose[j][i] - meanYPose[i], 2);
+                }
+
+                confXPose.Add(Math.Sqrt(squareXErr) * studentCoef/Math.Sqrt(NUM_OF_EXPR));
+                confYPose.Add(Math.Sqrt(squareYErr) * studentCoef / Math.Sqrt(NUM_OF_EXPR));                
+            }
+
 
             foreach(Point point in points)
             {
