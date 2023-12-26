@@ -75,10 +75,10 @@ namespace diffEqSolver
             // xPlot
             // 
             this.xPlot.AutoSize = true;
-            this.xPlot.Location = new System.Drawing.Point(10, 30);
-            this.xPlot.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.xPlot.Location = new System.Drawing.Point(7, 18);
+            this.xPlot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.xPlot.Name = "xPlot";
-            this.xPlot.Size = new System.Drawing.Size(1119, 500);
+            this.xPlot.Size = new System.Drawing.Size(783, 300);
             this.xPlot.TabIndex = 0;
             // 
             // posePlotBox
@@ -87,11 +87,9 @@ namespace diffEqSolver
             this.posePlotBox.Controls.Add(this.xPlotParams);
             this.posePlotBox.Controls.Add(this.yPlot);
             this.posePlotBox.Controls.Add(this.xPlot);
-            this.posePlotBox.Location = new System.Drawing.Point(17, 20);
-            this.posePlotBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.posePlotBox.Location = new System.Drawing.Point(12, 12);
             this.posePlotBox.Name = "posePlotBox";
-            this.posePlotBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.posePlotBox.Size = new System.Drawing.Size(1351, 1025);
+            this.posePlotBox.Size = new System.Drawing.Size(946, 615);
             this.posePlotBox.TabIndex = 2;
             this.posePlotBox.TabStop = false;
             // 
@@ -103,11 +101,9 @@ namespace diffEqSolver
             this.yPlotParams.Controls.Add(this.yVelCheck);
             this.yPlotParams.Controls.Add(this.yPoseCheck);
             this.yPlotParams.Controls.Add(this.yPlotAllCheck);
-            this.yPlotParams.Location = new System.Drawing.Point(1123, 538);
-            this.yPlotParams.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.yPlotParams.Location = new System.Drawing.Point(786, 323);
             this.yPlotParams.Name = "yPlotParams";
-            this.yPlotParams.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.yPlotParams.Size = new System.Drawing.Size(203, 350);
+            this.yPlotParams.Size = new System.Drawing.Size(142, 210);
             this.yPlotParams.TabIndex = 3;
             this.yPlotParams.TabStop = false;
             this.yPlotParams.Text = "Отобразить:";
@@ -115,10 +111,9 @@ namespace diffEqSolver
             // yPoseConfCheck
             // 
             this.yPoseConfCheck.AutoSize = true;
-            this.yPoseConfCheck.Location = new System.Drawing.Point(13, 267);
-            this.yPoseConfCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.yPoseConfCheck.Location = new System.Drawing.Point(9, 160);
             this.yPoseConfCheck.Name = "yPoseConfCheck";
-            this.yPoseConfCheck.Size = new System.Drawing.Size(154, 29);
+            this.yPoseConfCheck.Size = new System.Drawing.Size(104, 19);
             this.yPoseConfCheck.TabIndex = 5;
             this.yPoseConfCheck.Text = "Y Pose ConfInt";
             this.yPoseConfCheck.UseVisualStyleBackColor = true;
@@ -127,10 +122,9 @@ namespace diffEqSolver
             // yPoseMeanCheck
             // 
             this.yPoseMeanCheck.AutoSize = true;
-            this.yPoseMeanCheck.Location = new System.Drawing.Point(13, 225);
-            this.yPoseMeanCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.yPoseMeanCheck.Location = new System.Drawing.Point(9, 135);
             this.yPoseMeanCheck.Name = "yPoseMeanCheck";
-            this.yPoseMeanCheck.Size = new System.Drawing.Size(139, 29);
+            this.yPoseMeanCheck.Size = new System.Drawing.Size(94, 19);
             this.yPoseMeanCheck.TabIndex = 4;
             this.yPoseMeanCheck.Text = "Y Pose Mean";
             this.yPoseMeanCheck.UseVisualStyleBackColor = true;
@@ -139,10 +133,9 @@ namespace diffEqSolver
             // yPoseNoisyCheck
             // 
             this.yPoseNoisyCheck.AutoSize = true;
-            this.yPoseNoisyCheck.Location = new System.Drawing.Point(13, 183);
-            this.yPoseNoisyCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.yPoseNoisyCheck.Location = new System.Drawing.Point(9, 110);
             this.yPoseNoisyCheck.Name = "yPoseNoisyCheck";
-            this.yPoseNoisyCheck.Size = new System.Drawing.Size(140, 29);
+            this.yPoseNoisyCheck.Size = new System.Drawing.Size(94, 19);
             this.yPoseNoisyCheck.TabIndex = 3;
             this.yPoseNoisyCheck.Text = "Y Pose Noisy";
             this.yPoseNoisyCheck.UseVisualStyleBackColor = true;
@@ -151,10 +144,9 @@ namespace diffEqSolver
             // yVelCheck
             // 
             this.yVelCheck.AutoSize = true;
-            this.yVelCheck.Location = new System.Drawing.Point(13, 142);
-            this.yVelCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.yVelCheck.Location = new System.Drawing.Point(9, 85);
             this.yVelCheck.Name = "yVelCheck";
-            this.yVelCheck.Size = new System.Drawing.Size(114, 29);
+            this.yVelCheck.Size = new System.Drawing.Size(77, 19);
             this.yVelCheck.TabIndex = 2;
             this.yVelCheck.Text = "Y Velocity";
             this.yVelCheck.UseVisualStyleBackColor = true;
@@ -165,10 +157,9 @@ namespace diffEqSolver
             this.yPoseCheck.AutoSize = true;
             this.yPoseCheck.Checked = true;
             this.yPoseCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.yPoseCheck.Location = new System.Drawing.Point(13, 100);
-            this.yPoseCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.yPoseCheck.Location = new System.Drawing.Point(9, 60);
             this.yPoseCheck.Name = "yPoseCheck";
-            this.yPoseCheck.Size = new System.Drawing.Size(90, 29);
+            this.yPoseCheck.Size = new System.Drawing.Size(61, 19);
             this.yPoseCheck.TabIndex = 1;
             this.yPoseCheck.Text = "Y Pose";
             this.yPoseCheck.UseVisualStyleBackColor = true;
@@ -177,10 +168,9 @@ namespace diffEqSolver
             // yPlotAllCheck
             // 
             this.yPlotAllCheck.AutoSize = true;
-            this.yPlotAllCheck.Location = new System.Drawing.Point(13, 37);
-            this.yPlotAllCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.yPlotAllCheck.Location = new System.Drawing.Point(9, 22);
             this.yPlotAllCheck.Name = "yPlotAllCheck";
-            this.yPlotAllCheck.Size = new System.Drawing.Size(145, 29);
+            this.yPlotAllCheck.Size = new System.Drawing.Size(97, 19);
             this.yPlotAllCheck.TabIndex = 0;
             this.yPlotAllCheck.Text = "Показать все";
             this.yPlotAllCheck.UseVisualStyleBackColor = true;
@@ -194,11 +184,9 @@ namespace diffEqSolver
             this.xPlotParams.Controls.Add(this.xVelCheck);
             this.xPlotParams.Controls.Add(this.xPoseCheck);
             this.xPlotParams.Controls.Add(this.xPlotAllCheck);
-            this.xPlotParams.Location = new System.Drawing.Point(1123, 53);
-            this.xPlotParams.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.xPlotParams.Location = new System.Drawing.Point(786, 32);
             this.xPlotParams.Name = "xPlotParams";
-            this.xPlotParams.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.xPlotParams.Size = new System.Drawing.Size(203, 350);
+            this.xPlotParams.Size = new System.Drawing.Size(142, 210);
             this.xPlotParams.TabIndex = 2;
             this.xPlotParams.TabStop = false;
             this.xPlotParams.Text = "Отобразить:";
@@ -206,10 +194,9 @@ namespace diffEqSolver
             // xPoseConfCheck
             // 
             this.xPoseConfCheck.AutoSize = true;
-            this.xPoseConfCheck.Location = new System.Drawing.Point(13, 267);
-            this.xPoseConfCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.xPoseConfCheck.Location = new System.Drawing.Point(9, 160);
             this.xPoseConfCheck.Name = "xPoseConfCheck";
-            this.xPoseConfCheck.Size = new System.Drawing.Size(155, 29);
+            this.xPoseConfCheck.Size = new System.Drawing.Size(104, 19);
             this.xPoseConfCheck.TabIndex = 5;
             this.xPoseConfCheck.Text = "X Pose ConfInt";
             this.xPoseConfCheck.UseVisualStyleBackColor = true;
@@ -218,10 +205,9 @@ namespace diffEqSolver
             // xPoseMeanCheck
             // 
             this.xPoseMeanCheck.AutoSize = true;
-            this.xPoseMeanCheck.Location = new System.Drawing.Point(13, 225);
-            this.xPoseMeanCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.xPoseMeanCheck.Location = new System.Drawing.Point(9, 135);
             this.xPoseMeanCheck.Name = "xPoseMeanCheck";
-            this.xPoseMeanCheck.Size = new System.Drawing.Size(140, 29);
+            this.xPoseMeanCheck.Size = new System.Drawing.Size(94, 19);
             this.xPoseMeanCheck.TabIndex = 4;
             this.xPoseMeanCheck.Text = "X Pose Mean";
             this.xPoseMeanCheck.UseVisualStyleBackColor = true;
@@ -230,10 +216,9 @@ namespace diffEqSolver
             // xPoseNoisyCheck
             // 
             this.xPoseNoisyCheck.AutoSize = true;
-            this.xPoseNoisyCheck.Location = new System.Drawing.Point(13, 183);
-            this.xPoseNoisyCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.xPoseNoisyCheck.Location = new System.Drawing.Point(9, 110);
             this.xPoseNoisyCheck.Name = "xPoseNoisyCheck";
-            this.xPoseNoisyCheck.Size = new System.Drawing.Size(141, 29);
+            this.xPoseNoisyCheck.Size = new System.Drawing.Size(94, 19);
             this.xPoseNoisyCheck.TabIndex = 3;
             this.xPoseNoisyCheck.Text = "X Pose Noisy";
             this.xPoseNoisyCheck.UseVisualStyleBackColor = true;
@@ -242,10 +227,9 @@ namespace diffEqSolver
             // xVelCheck
             // 
             this.xVelCheck.AutoSize = true;
-            this.xVelCheck.Location = new System.Drawing.Point(13, 142);
-            this.xVelCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.xVelCheck.Location = new System.Drawing.Point(9, 85);
             this.xVelCheck.Name = "xVelCheck";
-            this.xVelCheck.Size = new System.Drawing.Size(115, 29);
+            this.xVelCheck.Size = new System.Drawing.Size(77, 19);
             this.xVelCheck.TabIndex = 2;
             this.xVelCheck.Text = "X Velocity";
             this.xVelCheck.UseVisualStyleBackColor = true;
@@ -256,10 +240,9 @@ namespace diffEqSolver
             this.xPoseCheck.AutoSize = true;
             this.xPoseCheck.Checked = true;
             this.xPoseCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.xPoseCheck.Location = new System.Drawing.Point(13, 100);
-            this.xPoseCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.xPoseCheck.Location = new System.Drawing.Point(9, 60);
             this.xPoseCheck.Name = "xPoseCheck";
-            this.xPoseCheck.Size = new System.Drawing.Size(91, 29);
+            this.xPoseCheck.Size = new System.Drawing.Size(61, 19);
             this.xPoseCheck.TabIndex = 1;
             this.xPoseCheck.Text = "X Pose";
             this.xPoseCheck.UseVisualStyleBackColor = true;
@@ -268,10 +251,9 @@ namespace diffEqSolver
             // xPlotAllCheck
             // 
             this.xPlotAllCheck.AutoSize = true;
-            this.xPlotAllCheck.Location = new System.Drawing.Point(13, 37);
-            this.xPlotAllCheck.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.xPlotAllCheck.Location = new System.Drawing.Point(9, 22);
             this.xPlotAllCheck.Name = "xPlotAllCheck";
-            this.xPlotAllCheck.Size = new System.Drawing.Size(145, 29);
+            this.xPlotAllCheck.Size = new System.Drawing.Size(97, 19);
             this.xPlotAllCheck.TabIndex = 0;
             this.xPlotAllCheck.Text = "Показать все";
             this.xPlotAllCheck.UseVisualStyleBackColor = true;
@@ -279,18 +261,18 @@ namespace diffEqSolver
             // 
             // yPlot
             // 
-            this.yPlot.Location = new System.Drawing.Point(10, 515);
-            this.yPlot.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.yPlot.Location = new System.Drawing.Point(7, 309);
+            this.yPlot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.yPlot.Name = "yPlot";
-            this.yPlot.Size = new System.Drawing.Size(1119, 500);
+            this.yPlot.Size = new System.Drawing.Size(783, 300);
             this.yPlot.TabIndex = 1;
             // 
             // xyPlot
             // 
-            this.xyPlot.Location = new System.Drawing.Point(1397, 20);
-            this.xyPlot.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.xyPlot.Location = new System.Drawing.Point(978, 12);
+            this.xyPlot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.xyPlot.Name = "xyPlot";
-            this.xyPlot.Size = new System.Drawing.Size(800, 933);
+            this.xyPlot.Size = new System.Drawing.Size(560, 560);
             this.xyPlot.TabIndex = 3;
             // 
             // plotUpdateTim
@@ -300,10 +282,10 @@ namespace diffEqSolver
             // 
             // timeBar
             // 
-            this.timeBar.Location = new System.Drawing.Point(1440, 917);
-            this.timeBar.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.timeBar.Location = new System.Drawing.Point(1008, 550);
+            this.timeBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.timeBar.Name = "timeBar";
-            this.timeBar.Size = new System.Drawing.Size(757, 128);
+            this.timeBar.Size = new System.Drawing.Size(530, 77);
             this.timeBar.TabIndex = 5;
             // 
             // Settings
@@ -314,11 +296,9 @@ namespace diffEqSolver
             this.Settings.Controls.Add(this.integraMethod);
             this.Settings.Controls.Add(this.simEndTime);
             this.Settings.Controls.Add(this.label1);
-            this.Settings.Location = new System.Drawing.Point(17, 1093);
-            this.Settings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Settings.Location = new System.Drawing.Point(12, 656);
             this.Settings.Name = "Settings";
-            this.Settings.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Settings.Size = new System.Drawing.Size(863, 130);
+            this.Settings.Size = new System.Drawing.Size(604, 78);
             this.Settings.TabIndex = 7;
             this.Settings.TabStop = false;
             this.Settings.Text = "Simulation Settings";
@@ -327,40 +307,38 @@ namespace diffEqSolver
             // 
             this.simTimeStep.DecimalPlaces = 4;
             this.simTimeStep.Increment = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             196608});
-            this.simTimeStep.Location = new System.Drawing.Point(413, 53);
-            this.simTimeStep.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.simTimeStep.Location = new System.Drawing.Point(289, 32);
             this.simTimeStep.Maximum = new decimal(new int[] {
             1,
             0,
             0,
-            0});
+            65536});
             this.simTimeStep.Minimum = new decimal(new int[] {
             1,
             0,
             0,
-            262144});
+            196608});
             this.simTimeStep.Name = "simTimeStep";
-            this.simTimeStep.Size = new System.Drawing.Size(110, 31);
+            this.simTimeStep.Size = new System.Drawing.Size(77, 23);
             this.simTimeStep.TabIndex = 9;
             this.simTimeStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.simTimeStep.Value = new decimal(new int[] {
             1,
             0,
             0,
-            131072});
+            196608});
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(276, 58);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(193, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 25);
+            this.label3.Size = new System.Drawing.Size(90, 15);
             this.label3.TabIndex = 8;
             this.label3.Text = "Simulation Step";
             // 
@@ -368,34 +346,31 @@ namespace diffEqSolver
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(541, 57);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(379, 34);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 25);
+            this.label2.Size = new System.Drawing.Size(109, 15);
             this.label2.TabIndex = 8;
             this.label2.Text = "Simulation Method";
             // 
             // integraMethod
             // 
             this.integraMethod.FormattingEnabled = true;
-            this.integraMethod.Location = new System.Drawing.Point(706, 52);
-            this.integraMethod.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.integraMethod.Location = new System.Drawing.Point(494, 31);
             this.integraMethod.Name = "integraMethod";
-            this.integraMethod.Size = new System.Drawing.Size(127, 33);
+            this.integraMethod.Size = new System.Drawing.Size(90, 23);
             this.integraMethod.TabIndex = 8;
             // 
             // simEndTime
             // 
             this.simEndTime.DecimalPlaces = 2;
-            this.simEndTime.Location = new System.Drawing.Point(151, 53);
-            this.simEndTime.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.simEndTime.Location = new System.Drawing.Point(106, 32);
             this.simEndTime.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             196608});
             this.simEndTime.Name = "simEndTime";
-            this.simEndTime.Size = new System.Drawing.Size(110, 31);
+            this.simEndTime.Size = new System.Drawing.Size(77, 23);
             this.simEndTime.TabIndex = 7;
             this.simEndTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.simEndTime.Value = new decimal(new int[] {
@@ -409,10 +384,9 @@ namespace diffEqSolver
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(10, 58);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(7, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 25);
+            this.label1.Size = new System.Drawing.Size(93, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Simulation Time";
             // 
@@ -422,11 +396,9 @@ namespace diffEqSolver
             this.groupBox1.Controls.Add(this.confRange99);
             this.groupBox1.Controls.Add(this.noiseAmp);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(914, 1093);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Location = new System.Drawing.Point(640, 656);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(454, 130);
+            this.groupBox1.Size = new System.Drawing.Size(318, 78);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Model Settings";
@@ -434,10 +406,9 @@ namespace diffEqSolver
             // confRange95
             // 
             this.confRange95.AutoSize = true;
-            this.confRange95.Location = new System.Drawing.Point(281, 78);
-            this.confRange95.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.confRange95.Location = new System.Drawing.Point(197, 47);
             this.confRange95.Name = "confRange95";
-            this.confRange95.Size = new System.Drawing.Size(72, 29);
+            this.confRange95.Size = new System.Drawing.Size(47, 19);
             this.confRange95.TabIndex = 13;
             this.confRange95.Text = "95%";
             this.confRange95.UseVisualStyleBackColor = true;
@@ -447,10 +418,9 @@ namespace diffEqSolver
             // 
             this.confRange99.AutoSize = true;
             this.confRange99.Checked = true;
-            this.confRange99.Location = new System.Drawing.Point(281, 37);
-            this.confRange99.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.confRange99.Location = new System.Drawing.Point(197, 22);
             this.confRange99.Name = "confRange99";
-            this.confRange99.Size = new System.Drawing.Size(86, 29);
+            this.confRange99.Size = new System.Drawing.Size(56, 19);
             this.confRange99.TabIndex = 12;
             this.confRange99.TabStop = true;
             this.confRange99.Text = "99.5%";
@@ -465,8 +435,7 @@ namespace diffEqSolver
             0,
             0,
             131072});
-            this.noiseAmp.Location = new System.Drawing.Point(111, 52);
-            this.noiseAmp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.noiseAmp.Location = new System.Drawing.Point(78, 31);
             this.noiseAmp.Maximum = new decimal(new int[] {
             1,
             0,
@@ -478,7 +447,7 @@ namespace diffEqSolver
             0,
             196608});
             this.noiseAmp.Name = "noiseAmp";
-            this.noiseAmp.Size = new System.Drawing.Size(110, 31);
+            this.noiseAmp.Size = new System.Drawing.Size(77, 23);
             this.noiseAmp.TabIndex = 11;
             this.noiseAmp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.noiseAmp.Value = new decimal(new int[] {
@@ -491,20 +460,18 @@ namespace diffEqSolver
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(11, 57);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(8, 34);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 25);
+            this.label4.Size = new System.Drawing.Size(63, 15);
             this.label4.TabIndex = 10;
             this.label4.Text = "NoiseAmp";
             // 
             // simulateBtn
             // 
             this.simulateBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.simulateBtn.Location = new System.Drawing.Point(1467, 1107);
-            this.simulateBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.simulateBtn.Location = new System.Drawing.Point(1027, 664);
             this.simulateBtn.Name = "simulateBtn";
-            this.simulateBtn.Size = new System.Drawing.Size(167, 117);
+            this.simulateBtn.Size = new System.Drawing.Size(117, 70);
             this.simulateBtn.TabIndex = 9;
             this.simulateBtn.Text = "Simulate";
             this.simulateBtn.UseVisualStyleBackColor = false;
@@ -512,16 +479,15 @@ namespace diffEqSolver
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2216, 1261);
+            this.ClientSize = new System.Drawing.Size(1551, 757);
             this.Controls.Add(this.simulateBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Settings);
             this.Controls.Add(this.xyPlot);
             this.Controls.Add(this.timeBar);
             this.Controls.Add(this.posePlotBox);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             this.posePlotBox.ResumeLayout(false);

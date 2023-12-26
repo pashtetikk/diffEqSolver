@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Numerics;
@@ -10,6 +11,9 @@ namespace diffEqSolver
         int NUM_OF_EXPR = 25;
         int THIN_OUT_COEF = 8;
         double studentCoef = 5.598;
+
+        double mass = 1;
+        double fric = 0.01;
         Dictionary<int, string> IntegraMethods = new Dictionary<int, string>
         {
             {0, "Eiler" },
@@ -29,7 +33,7 @@ namespace diffEqSolver
             return num * (double)noiseAmp.Value / 6;
         }
 
-        Point initialCond = new Point(x:2, y:0);
+        Point initialCond = new Point(x:1, y:0);
 
         List<Point> points = new List<Point>();
         List<double> time = new List<double>();
@@ -59,11 +63,14 @@ namespace diffEqSolver
             return outData;
         }
 
-        Point calcSysOut(Point point)
+        Point calcSysOut(Point p)
         {
             return new Point(
-                ax: 2 * point.X * (-2 * Math.Pow(point.vX, 2) - accle_g) / (4 * Math.Pow(point.X, 2) + 1),
-                ay: (2 * Math.Pow(point.vX, 2) + accle_g) / (4 * Math.Pow(point.X, 2) + 1) - accle_g
+                //ax: 2 * p.X * (-2 * Math.Pow(p.vX, 2) - accle_g) / (4 * Math.Pow(p.X, 2) + 1),
+                //ay: (2 * Math.Pow(p.vX, 2) + accle_g) / (4 * Math.Pow(p.X, 2) + 1) - accle_g
+
+                ax: 10*p.X*(10*fric*p.vX*p.X-10*mass*Math.Pow(p.vX,2)-fric*p.vY - mass*accle_g) / (100 * mass * Math.Pow(p.X, 2) + mass) - fric * p.vX/mass,
+                ay: -(10 * fric * p.vX * p.X - 10 * mass * Math.Pow(p.vX, 2) - fric * p.vY - mass * accle_g) / (100 * mass * Math.Pow(p.X, 2) + mass) - fric * p.vY / mass - accle_g
                 );
         }
 
@@ -92,7 +99,7 @@ namespace diffEqSolver
             xyPlot.Plot.Title("XY Pose");
             xyPlot.Plot.XAxis.Label("X, m");
             xyPlot.Plot.YAxis.Label("Y, m");
-            xyPlot.Plot.SetAxisLimits(-5, 5, -5, 5);
+            xyPlot.Plot.SetAxisLimits(-3, 3, -7, 1);
             xyPlot.Configuration.Zoom = false;
             xyPlot.Configuration.Pan = false;
 
@@ -155,7 +162,14 @@ namespace diffEqSolver
                 animationT[0] = time[animationI];
                 xyPlot.Plot.AddScatter(animationX, animationY, markerSize: 10, color: Color.Magenta);
                 animTimeBar.Values = animationT;
-                animationI++;
+                if(points.Count > 1000) {
+                    animationI += points.Count()/1000;
+                }
+                else
+                {
+                    animationI += 1;
+                }
+                
                 if (animationI >= points.Count)
                 {
                     animationI = 0;
@@ -371,7 +385,7 @@ namespace diffEqSolver
                 velXGraph.Add(point.vX);
                 velYGraph.Add(point.vY);
             }
-            plotUpdateTim.Interval = (int)(dT * 2000);
+            plotUpdateTim.Interval = (int)(dT * 1000);
             xPlot.Plot.Clear();
             yPlot.Plot.Clear();
             newData = true;
