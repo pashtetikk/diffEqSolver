@@ -8,8 +8,8 @@ namespace diffEqSolver
     public partial class Form1 : Form
     {
         const double accle_g = 9.81;
-        int NUM_OF_EXPR = 25;
-        int THIN_OUT_COEF = 8;
+        int NUM_OF_EXPR = 5;
+        int THIN_OUT_COEF = 50;
         double studentCoef = 5.598;
 
         double mass = 1;
@@ -223,7 +223,7 @@ namespace diffEqSolver
             {
                 var errXGraph = xPlot.Plot.AddErrorBars(thinOut(time).ToArray(), thinOut(meanXPose).ToArray(), null, 
                                                             thinOut(confXPose).ToArray(), markerSize: 0, color: Color.Green);
-                errXGraph.LineWidth = 1.5;
+                errXGraph.LineWidth = 1.8;
             }
 
 
@@ -255,7 +255,7 @@ namespace diffEqSolver
             {
                 var errYGraph = yPlot.Plot.AddErrorBars(thinOut(time).ToArray(), thinOut(meanYPose).ToArray(), null,
                                                             thinOut(confYPose).ToArray(), markerSize: 0, color: Color.Green);
-                errYGraph.LineWidth = 1.5;
+                errYGraph.LineWidth = 1.8;
             }
 
 

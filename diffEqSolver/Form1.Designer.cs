@@ -451,10 +451,10 @@ namespace diffEqSolver
             this.noiseAmp.TabIndex = 11;
             this.noiseAmp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.noiseAmp.Value = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
-            65536});
+            131072});
             // 
             // label4
             // 
